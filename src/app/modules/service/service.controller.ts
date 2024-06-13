@@ -23,7 +23,20 @@ const getAllServices = catchasync(async (req: Request, res: Response) => {
     data: result,
   });
 });
+
+const getSingleServiceByID = catchasync(async (req: Request, res: Response) => {
+  const serviceID = req.params.id;
+  const result = await CarwashServices.getSingleService(serviceID);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: `Service retrieved successfully`,
+    data: result,
+  });
+});
+
 export const ServiceControllers = {
   createNewService,
   getAllServices,
+  getSingleServiceByID,
 };

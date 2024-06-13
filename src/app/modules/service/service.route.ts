@@ -15,6 +15,12 @@ serviceRoutes.post(
 );
 
 serviceRoutes.get(
+  "/:id",
+  auth(USER_ROLE.admin, USER_ROLE.user),
+  ServiceControllers.getSingleServiceByID
+);
+
+serviceRoutes.get(
   "/",
   auth(USER_ROLE.admin, USER_ROLE.user),
   ServiceControllers.getAllServices
