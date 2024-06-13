@@ -48,9 +48,23 @@ const updateServiceByID = catchasync(async (req: Request, res: Response) => {
   });
 });
 
+const deleteServiceByIDsoft = catchasync(
+  async (req: Request, res: Response) => {
+    const serviceID = req.params.id;
+    const result = await CarwashServices.deleteServiceSoft(serviceID);
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: `Service deleted successfully`,
+      data: result,
+    });
+  }
+);
+
 export const ServiceControllers = {
   createNewService,
   getAllServices,
   getSingleServiceByID,
   updateServiceByID,
+  deleteServiceByIDsoft,
 };

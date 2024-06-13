@@ -32,4 +32,11 @@ serviceRoutes.put(
   validateRequest(ServiceValidators.updateServiceValidationSchema),
   ServiceControllers.updateServiceByID
 );
+
+serviceRoutes.delete(
+  "/:id",
+  auth(USER_ROLE.admin),
+  ServiceControllers.deleteServiceByIDsoft
+);
+
 export default serviceRoutes;

@@ -30,9 +30,19 @@ const updateSingleService = async (id: string, update: Partial<TService>) => {
   return result;
 };
 
+const deleteServiceSoft = async (id: string) => {
+  const update = { isDeleted: true };
+  const result = await Service.findByIdAndUpdate(id, update, { new: true });
+  if (!result) {
+    throw new AppError(httpStatus.NOT_FOUND, "Data Not Found for Update");
+  }
+  return result;
+};
+
 export const CarwashServices = {
   createNewServiceIntoDB,
   getAllServicesfromDB,
   getSingleService,
   updateSingleService,
+  deleteServiceSoft,
 };
