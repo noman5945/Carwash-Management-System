@@ -25,4 +25,11 @@ serviceRoutes.get(
   auth(USER_ROLE.admin, USER_ROLE.user),
   ServiceControllers.getAllServices
 );
+
+serviceRoutes.put(
+  "/:id",
+  auth(USER_ROLE.admin),
+  validateRequest(ServiceValidators.updateServiceValidationSchema),
+  ServiceControllers.updateServiceByID
+);
 export default serviceRoutes;

@@ -10,6 +10,17 @@ const serviceValidationSchema = z.object({
   }),
 });
 
+const updateServiceValidationSchema = z.object({
+  body: z.object({
+    name: z.string({ invalid_type_error: "Name must be a string" }).optional(),
+    description: z.string().optional(),
+    price: z.number().optional(),
+    duration: z.number().optional(),
+    isDeleted: z.boolean().optional(),
+  }),
+});
+
 export const ServiceValidators = {
   serviceValidationSchema,
+  updateServiceValidationSchema,
 };
