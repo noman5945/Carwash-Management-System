@@ -1,3 +1,5 @@
+import { USER_ROLE } from "./user.constants";
+
 export type TUser = {
   name: string;
   email: string;
@@ -16,3 +18,5 @@ export type TUserTokenData = {
   userId: string;
   role: string;
 };
+
+export type TUserRole = keyof typeof USER_ROLE;
