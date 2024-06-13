@@ -1,6 +1,8 @@
 import { Schema, model } from "mongoose";
 import { TUser } from "./user.interface";
 import { NextFunction } from "express";
+import bcrypt from "bcrypt";
+import config from "../../config";
 
 const userSchemas = new Schema<TUser>(
   {
@@ -17,7 +19,6 @@ const userSchemas = new Schema<TUser>(
       type: String,
       required: [true, "Password is required"],
       maxlength: 20,
-      select: false,
     },
     phone: {
       type: String,
@@ -38,10 +39,13 @@ const userSchemas = new Schema<TUser>(
   }
 );
 
-// userSchemas.post("save", async function (doc, next) {
-//   let data = await this.model("user").findById(doc._id).select("-password");
-
-//   next();
-// });
+userSchemas.pre("save", async function (next) {
+  const user = this;
+  user.password = await bcrypt.hash(
+    user.password,
+    Number(config.bcrypt_salt_rounds)
+  );
+  next();
+});
 
 export const User = model<TUser>("user", userSchemas);

@@ -6,3 +6,13 @@ export type TUser = {
   role: "admin" | "user";
   address: string;
 };
+
+export type TLoginUser = {
+  email: string;
+  password: string;
+};
+
+export type TUserTokenData = {
+  userId: string;
+  role: string;
+};

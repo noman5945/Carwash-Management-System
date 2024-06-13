@@ -22,6 +22,19 @@ const userValidationSchema = z.object({
   }),
 });
 
+const userLoginDataSchema = z.object({
+  body: z.object({
+    email: z
+      .string({ invalid_type_error: "Invalid input Type. Must be a string" })
+      .email(),
+    password: z
+      .string()
+      .max(20, "Password shouldnt be more than 20 chars")
+      .min(4, "Minimum 4 characters long"),
+  }),
+});
+
 export const userValidations = {
   userValidationSchema,
+  userLoginDataSchema,
 };

@@ -11,4 +11,10 @@ userRoute.post(
   UserControllers.createNewUser
 );
 
+userRoute.post(
+  "/login",
+  validateRequest(userValidations.userLoginDataSchema),
+  UserControllers.loginUser
+);
+
 export default userRoute;
