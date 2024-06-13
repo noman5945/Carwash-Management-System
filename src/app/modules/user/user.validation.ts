@@ -10,7 +10,13 @@ const userValidationSchema = z.object({
       .string()
       .max(20, "Password shouldnt be more than 20 chars")
       .min(4, "Minimum 4 characters long"),
-    phone: z.string().max(11, "Invalid phone number length"),
+    phone: z
+      .string()
+      .max(11, "Invalid phone number length")
+      .regex(
+        /^\d+$/,
+        "Phone number is not valid.Unexpected characters detected."
+      ),
     role: z.enum(["admin", "user"]),
     address: z.string(),
   }),

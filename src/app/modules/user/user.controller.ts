@@ -7,7 +7,7 @@ import httpStatus from "http-status";
 const createNewUser = catchasync(async (req: Request, res: Response) => {
   const result = await userServices.createNewUserIntoDB(req.body);
   sendResponse(res, {
-    statusCode: httpStatus.CREATED,
+    statusCode: httpStatus.OK,
     success: true,
     message: "User registered successfully",
     data: result,
