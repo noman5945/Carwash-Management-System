@@ -14,4 +14,9 @@ serviceRoutes.post(
   ServiceControllers.createNewService
 );
 
+serviceRoutes.get(
+  "/",
+  auth(USER_ROLE.admin, USER_ROLE.user),
+  ServiceControllers.getAllServices
+);
 export default serviceRoutes;

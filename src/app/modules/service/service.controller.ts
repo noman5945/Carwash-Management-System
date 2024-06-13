@@ -14,6 +14,16 @@ const createNewService = catchasync(async (req: Request, res: Response) => {
   });
 });
 
+const getAllServices = catchasync(async (req: Request, res: Response) => {
+  const result = await CarwashServices.getAllServicesfromDB();
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: `Services retrieved successfully`,
+    data: result,
+  });
+});
 export const ServiceControllers = {
   createNewService,
+  getAllServices,
 };

@@ -6,6 +6,12 @@ const createNewServiceIntoDB = async (serviceData: TService) => {
   return result;
 };
 
+const getAllServicesfromDB = async () => {
+  const result = await Service.find({});
+  return result;
+};
+
 export const CarwashServices = {
   createNewServiceIntoDB,
+  getAllServicesfromDB,
 };
