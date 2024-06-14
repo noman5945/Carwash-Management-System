@@ -21,6 +21,8 @@ const auth = (...requiredRoles: TUserRole[]) => {
     if (requiredRoles && !requiredRoles.includes(role)) {
       throw new AppError(httpStatus.UNAUTHORIZED, "Unauthorized access denied");
     }
+
+    req.user = decoded;
     next();
   });
 };
