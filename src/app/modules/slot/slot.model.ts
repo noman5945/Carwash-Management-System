@@ -4,7 +4,7 @@ import { TSlot } from "./slot.interface";
 const slotSchema = new Schema<TSlot>(
   {
     service: {
-      type: Schema.Types.ObjectId,
+      type: String,
       ref: "service",
     },
     date: {
