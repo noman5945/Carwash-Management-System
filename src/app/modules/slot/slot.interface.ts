@@ -7,3 +7,10 @@ export type TSlot = {
   endTime: string;
   isBooked: "available" | "booked" | "canceled";
 };
+
+export type TSlotTimes = {
+  startTime: string;
+  endTime: string;
+};
+
+export type TSlotTimesArray = TSlotTimes[];

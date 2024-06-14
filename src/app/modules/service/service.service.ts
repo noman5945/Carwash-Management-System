@@ -3,6 +3,8 @@ import { TService } from "./service.interface";
 import { Service } from "./service.model";
 import AppError from "../../errors/AppError";
 import httpStatus from "http-status";
+import { TSlot } from "../slot/slot.interface";
+import createSlots from "../slot/slot.utils";
 
 const createNewServiceIntoDB = async (serviceData: TService) => {
   const result = await Service.create(serviceData);
@@ -39,10 +41,15 @@ const deleteServiceSoft = async (id: string) => {
   return result;
 };
 
+const createNewSlotsIntoDB = async (slotNew: TSlot) => {
+  return createSlots(slotNew.startTime, slotNew.endTime);
+};
+
 export const CarwashServices = {
   createNewServiceIntoDB,
   getAllServicesfromDB,
   getSingleService,
   updateSingleService,
   deleteServiceSoft,
+  createNewSlotsIntoDB,
 };

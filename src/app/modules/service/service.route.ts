@@ -39,4 +39,10 @@ serviceRoutes.delete(
   ServiceControllers.deleteServiceByIDsoft
 );
 
+serviceRoutes.post(
+  "/slots",
+  auth(USER_ROLE.admin),
+  ServiceControllers.createNewSlots
+);
+
 export default serviceRoutes;

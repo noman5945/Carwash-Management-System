@@ -61,10 +61,22 @@ const deleteServiceByIDsoft = catchasync(
   }
 );
 
+const createNewSlots = catchasync(async (req: Request, res: Response) => {
+  const slotBody = req.body;
+  const result = await CarwashServices.createNewSlotsIntoDB(slotBody);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: `Service deleted successfully`,
+    data: result,
+  });
+});
+
 export const ServiceControllers = {
   createNewService,
   getAllServices,
   getSingleServiceByID,
   updateServiceByID,
   deleteServiceByIDsoft,
+  createNewSlots,
 };
