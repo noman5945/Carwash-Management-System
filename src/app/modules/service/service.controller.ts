@@ -67,7 +67,7 @@ const createNewSlots = catchasync(async (req: Request, res: Response) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: `Service deleted successfully`,
+    message: `Slots created successfully`,
     data: result,
   });
 });

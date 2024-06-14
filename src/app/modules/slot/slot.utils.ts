@@ -24,11 +24,11 @@ const createSlots = (
   let counter: number = 0;
   let startingMin: number = startTimeHourToMin;
   for (counter; counter < numberOfSlots; counter++) {
-    let endingMin: number = startingMin + 60;
-    let startingHour: number = startingMin / 60;
-    let endingHour: number = endingMin / 60;
-    let startMIN: number = startingMin % 60;
-    let endMIN: number = endingMin % 60;
+    let endingMin: number = Math.trunc(startingMin + 60);
+    let startingHour: number = Math.trunc(startingMin / 60);
+    let endingHour: number = Math.trunc(endingMin / 60);
+    let startMIN: number = Math.trunc(startingMin % 60);
+    let endMIN: number = Math.trunc(endingMin % 60);
 
     const start: string =
       (startingHour.toString().length < 2

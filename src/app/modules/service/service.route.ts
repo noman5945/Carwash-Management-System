@@ -4,6 +4,7 @@ import { USER_ROLE } from "../user/user.constants";
 import { ServiceControllers } from "./service.controller";
 import validateRequest from "../../middleware/validateRequest";
 import { ServiceValidators } from "./service.validation";
+import { SlotValidators } from "../slot/slot.validation";
 
 const serviceRoutes = Router();
 
@@ -42,6 +43,7 @@ serviceRoutes.delete(
 serviceRoutes.post(
   "/slots",
   auth(USER_ROLE.admin),
+  validateRequest(SlotValidators.slotValidationSchema),
   ServiceControllers.createNewSlots
 );
 
