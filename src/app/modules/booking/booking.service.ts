@@ -22,6 +22,34 @@ const bookServicebyUser = async (bookingInfo: TBooking) => {
   return finalDispalyData;
 };
 
+const getAllBookingsfromDB = async () => {
+  const result = await Booking.find({})
+    .populate("customer", "-password -role -createdAt -updatedAt")
+    .populate("slot", "-createdAt -updatedAt")
+    .populate("service", "-createdAt -updatedAt");
+
+  if (result.length < 1) {
+    throw new Error("There are no bookings in the database.");
+  }
+
+  return result;
+};
+
+const getUserBookingsfromDB = async (userID: string) => {
+  const result = await Booking.find({ customer: userID })
+    .populate("customer", "-password -role -createdAt -updatedAt")
+    .populate("slot", "-createdAt -updatedAt")
+    .populate("service", "-createdAt -updatedAt");
+
+  if (result.length < 1) {
+    throw new Error("You have not booked anything yet");
+  }
+
+  return result;
+};
+
 export const BookingService = {
   bookServicebyUser,
+  getAllBookingsfromDB,
+  getUserBookingsfromDB,
 };

@@ -7,4 +7,10 @@ const bookingRoutes = Router();
 
 bookingRoutes.post("/", auth(USER_ROLE.user), BookingControllers.bookService);
 
+bookingRoutes.get(
+  "/",
+  auth(USER_ROLE.admin),
+  BookingControllers.getAllBookings
+);
+
 export default bookingRoutes;
