@@ -36,12 +36,13 @@ ID: WEB6-3280 <br>
 
 1. SignUp : /api/auth/signup (POST)
 2. LogIn : /api/auth/login(POST)
-3. Get available slots: /api/slots/availability (GET)
+3. Get available slots: /api/slots/availability (GET) <br>
    Query Params :
    date: (Optional) The specific date for which available slots are requested (format: YYYY-MM-DD).
    serviceId: (Optional) ID of the service for which available slots are requested.
 
 4. Get All Services: /api/services(GET)
+5. Get a Service: /api/services/:id(GET) params:id
 
 [*Accessable by Admin Only*]
 
