@@ -66,3 +66,8 @@ ID: WEB6-3280 <br>
 ## Postman API Documentation Link:
 
     Published link: https://documenter.getpostman.com/view/30756775/2sA3XQhNDW
+
+## Run Locally
+
+1. Step 1: Build the Project using : `npm run build`
+2. Step 2: Initalize Server using : `npm run start:prod`
