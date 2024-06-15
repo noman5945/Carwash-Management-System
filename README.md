@@ -31,3 +31,6 @@ ID: WEB6-3280 <br>
 </ul>
 
 ## API Endpoints
+
+1. SignUp : /api/auth/signup (POST)
+2. LogIn :
