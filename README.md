@@ -32,5 +32,28 @@ ID: WEB6-3280 <br>
 
 ## API Endpoints
 
+[*Accessable by Both User and Admin*]
+
 1. SignUp : /api/auth/signup (POST)
-2. LogIn :
+2. LogIn : /api/auth/login(POST)
+3. Get available slots: /api/slots/availability (GET)
+   Query Params :
+   date: (Optional) The specific date for which available slots are requested (format: YYYY-MM-DD).
+   serviceId: (Optional) ID of the service for which available slots are requested.
+
+4. Get All Services: /api/services(GET)
+
+[*Accessable by Admin Only*]
+
+1. Create Service: /api/services (POST)
+2. Update Services : /api/services/:id (PUT)
+   params:id
+3. Delete a Service: /api/services/:id (DELETE) [SOFT DELETE ]
+   params:id
+4. Create Slot: /api/services/slots(POST)
+5. Get All Bookings: /api/bookings(GET)
+
+[*Accessable by User only*]
+
+1. Book a Service : /api/bookings(POST)
+2. Get User's Bookings: /api/my-bookings(GET)
