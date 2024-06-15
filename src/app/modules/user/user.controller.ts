@@ -16,7 +16,7 @@ const createNewUser = catchasync(async (req: Request, res: Response) => {
 
 const loginUser: RequestHandler = async (req: Request, res: Response) => {
   try {
-    const { accesToken, user } = await userServices.userLoginByEmailPass(
+    const { accesToken, safeUser } = await userServices.userLoginByEmailPass(
       req.body
     );
     res.status(httpStatus.OK).json({
@@ -24,7 +24,7 @@ const loginUser: RequestHandler = async (req: Request, res: Response) => {
       statusCode: httpStatus.OK,
       message: `User logged in successfully`,
       token: accesToken,
-      data: user,
+      data: safeUser,
     });
   } catch (error) {
     if (error instanceof Error) {

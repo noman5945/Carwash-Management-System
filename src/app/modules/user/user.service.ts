@@ -30,10 +30,12 @@ const userLoginByEmailPass = async (loginData: TLoginUser) => {
     config.jwt_accsess_token_sign as string,
     "10d"
   );
+  const safeUser = JSON.parse(JSON.stringify(user));
+  delete safeUser.password;
 
   return {
     accesToken,
-    user,
+    safeUser,
   };
 };
 
