@@ -58,3 +58,11 @@ ID: WEB6-3280 <br>
 
 1. Book a Service : /api/bookings(POST)
 2. Get User's Bookings: /api/my-bookings(GET)
+
+## Live Link :
+
+    vercel: https://assignment-3-five-chi.vercel.app/
+
+## Postman API Documentation Link:
+
+    Published link: https://documenter.getpostman.com/view/30756775/2sA3XQhNDW
