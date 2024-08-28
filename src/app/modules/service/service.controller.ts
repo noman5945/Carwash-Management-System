@@ -15,7 +15,24 @@ const createNewService = catchasync(async (req: Request, res: Response) => {
 });
 
 const getAllServices = catchasync(async (req: Request, res: Response) => {
-  const result = await CarwashServices.getAllServicesfromDB();
+  const query = req.query;
+  let limit = 10;
+  for (let key in query) {
+    if (key === "limit") {
+      limit = Number(query[key]);
+    }
+  }
+  const result = await CarwashServices.getAllServicesfromDB(limit);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: `Services retrieved successfully`,
+    data: result,
+  });
+});
+
+const getFilterdServices = catchasync(async (req: Request, res: Response) => {
+  const result = await CarwashServices.getFilterdServices();
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
@@ -79,4 +96,5 @@ export const ServiceControllers = {
   updateServiceByID,
   deleteServiceByIDsoft,
   createNewSlots,
+  getFilterdServices,
 };

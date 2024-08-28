@@ -15,17 +15,11 @@ serviceRoutes.post(
   ServiceControllers.createNewService
 );
 
-serviceRoutes.get(
-  "/:id",
-  auth(USER_ROLE.admin, USER_ROLE.user),
-  ServiceControllers.getSingleServiceByID
-);
+serviceRoutes.get("/:id", ServiceControllers.getSingleServiceByID);
 
-serviceRoutes.get(
-  "/",
-  auth(USER_ROLE.admin, USER_ROLE.user),
-  ServiceControllers.getAllServices
-);
+serviceRoutes.get("/", ServiceControllers.getAllServices);
+
+serviceRoutes.get("/filter/serv", ServiceControllers.getFilterdServices);
 
 serviceRoutes.put(
   "/:id",

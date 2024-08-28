@@ -12,8 +12,18 @@ const createNewServiceIntoDB = async (serviceData: TService) => {
   return result;
 };
 
-const getAllServicesfromDB = async () => {
-  const result = await Service.find({});
+const getAllServicesfromDB = async (limit: number) => {
+  const result = await Service.find({}).limit(limit);
+  return result;
+};
+
+const getFilterdServices = async () => {
+  let query = {
+    price: { $lte: 100 },
+    duration: { $lte: 80 },
+    name: { $regex: "oi", $options: "i" },
+  };
+  const result = await Service.find(query).sort({ price: -1 }).limit(10);
   return result;
 };
 
@@ -74,4 +84,5 @@ export const CarwashServices = {
   updateSingleService,
   deleteServiceSoft,
   createNewSlotsIntoDB,
+  getFilterdServices,
 };
