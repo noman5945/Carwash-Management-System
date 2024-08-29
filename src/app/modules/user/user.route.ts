@@ -23,4 +23,11 @@ userAuthRoute.post(
 
 userRoute.get("/", auth(USER_ROLE.user), BookingControllers.getUserBookings);
 
+userAuthRoute.post(
+  "/update-role",
+  auth(USER_ROLE.admin),
+  validateRequest(userValidations.userRoleUpdateValidationSchema),
+  UserControllers.updateUserRole
+);
+
 export const userAllRoutes = { userAuthRoute, userRoute };

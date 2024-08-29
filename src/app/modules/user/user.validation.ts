@@ -34,7 +34,15 @@ const userLoginDataSchema = z.object({
   }),
 });
 
+const userRoleUpdateValidationSchema = z.object({
+  body: z.object({
+    userId: z.string(),
+    role: z.enum(["admin", "user"]),
+  }),
+});
+
 export const userValidations = {
   userValidationSchema,
   userLoginDataSchema,
+  userRoleUpdateValidationSchema,
 };

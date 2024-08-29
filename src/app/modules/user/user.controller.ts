@@ -3,6 +3,7 @@ import catchasync from "../../utils/catchAsync";
 import { userServices } from "./user.service";
 import sendResponse from "../../utils/sendResponse";
 import httpStatus from "http-status";
+import { TUserTokenData } from "./user.interface";
 
 const createNewUser = catchasync(async (req: Request, res: Response) => {
   const result = await userServices.createNewUserIntoDB(req.body);
@@ -37,7 +38,22 @@ const loginUser: RequestHandler = async (req: Request, res: Response) => {
   }
 };
 
+const updateUserRole = catchasync(async (req: Request, res: Response) => {
+  const userData: TUserTokenData = req.body;
+  const result = await userServices.updateUserRole(
+    userData.role,
+    userData.userId
+  );
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "User role updated successfully",
+    data: result,
+  });
+});
+
 export const UserControllers = {
   createNewUser,
   loginUser,
+  updateUserRole,
 };

@@ -1,4 +1,5 @@
 import config from "../../config";
+import AppError from "../../errors/AppError";
 import { TLoginUser, TUser, TUserTokenData } from "./user.interface";
 import { User } from "./user.model";
 import { userAuthUtils } from "./user.utils";
@@ -39,7 +40,17 @@ const userLoginByEmailPass = async (loginData: TLoginUser) => {
   };
 };
 
+const updateUserRole = async (role: string, id: string) => {
+  const userExists = await User.findById(id);
+  if (!userExists) {
+    throw new AppError(404, "User not found");
+  }
+  const res = await User.findByIdAndUpdate(id, { role: role }, { new: true });
+  return res;
+};
+
 export const userServices = {
   createNewUserIntoDB,
   userLoginByEmailPass,
+  updateUserRole,
 };
