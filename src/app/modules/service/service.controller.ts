@@ -22,7 +22,7 @@ const getAllServices = catchasync(async (req: Request, res: Response) => {
       limit = Number(query[key]);
     }
   }
-  const result = await CarwashServices.getAllServicesfromDB(limit);
+  const result = await CarwashServices.getAllServicesfromDB(query, limit);
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,

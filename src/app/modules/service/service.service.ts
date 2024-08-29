@@ -12,8 +12,24 @@ const createNewServiceIntoDB = async (serviceData: TService) => {
   return result;
 };
 
-const getAllServicesfromDB = async (limit: number) => {
-  const result = await Service.find({}).limit(limit);
+const getAllServicesfromDB = async (params: any, limit: number) => {
+  let query: any = {};
+  let sort: any = {};
+  if (params.name) {
+    query.name = { $regex: params.name, $options: "i" };
+  }
+  if (params.price) {
+    query.price = { $lte: Number(params.price) };
+  }
+
+  if (params.duration) {
+    query.duration = { $lte: Number(params.duration) };
+  }
+  if (params.sort) {
+    sort[params.sort] = -1;
+  }
+
+  const result = await Service.find(query).sort(sort).limit(limit);
   return result;
 };
 
