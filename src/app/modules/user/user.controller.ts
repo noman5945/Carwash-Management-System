@@ -52,8 +52,19 @@ const updateUserRole = catchasync(async (req: Request, res: Response) => {
   });
 });
 
+const getAllUsers = catchasync(async (req: Request, res: Response) => {
+  const allUserData = await userServices.getAllUsers();
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Users fetched successfully",
+    data: allUserData,
+  });
+});
+
 export const UserControllers = {
   createNewUser,
   loginUser,
   updateUserRole,
+  getAllUsers,
 };

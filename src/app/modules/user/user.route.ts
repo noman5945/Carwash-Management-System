@@ -30,4 +30,10 @@ userAuthRoute.post(
   UserControllers.updateUserRole
 );
 
+userAuthRoute.get(
+  "/all-users",
+  auth(USER_ROLE.admin),
+  UserControllers.getAllUsers
+);
+
 export const userAllRoutes = { userAuthRoute, userRoute };
