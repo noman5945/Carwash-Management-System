@@ -28,6 +28,9 @@ const getAllServicesfromDB = async (params: any, limit: number) => {
   if (params.sort) {
     sort[params.sort] = -1;
   }
+  if (params.isDeleted) {
+    query.isDeleted = params.isDeleted;
+  }
 
   const result = await Service.find(query).sort(sort).limit(limit);
   return result;
