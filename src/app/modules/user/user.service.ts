@@ -49,14 +49,33 @@ const updateUserRole = async (role: string, id: string) => {
   return res;
 };
 
+const updateUserInfo = async (updateData: any, id: string) => {
+  const userExists = await User.findById(id);
+  if (!userExists) {
+    throw new AppError(404, "User not found");
+  }
+  const res = await User.findByIdAndUpdate(id, updateData, { new: true });
+  return res;
+};
+
 const getAllUsers = async () => {
   const allUsers = await User.find({}).select("-password");
   return allUsers;
+};
+
+const getUserByID = async (id: string) => {
+  const user = await User.findById(id).select("-password");
+  if (!user) {
+    throw new AppError(404, "User not found.");
+  }
+  return user;
 };
 
 export const userServices = {
   createNewUserIntoDB,
   userLoginByEmailPass,
   updateUserRole,
+  updateUserInfo,
   getAllUsers,
+  getUserByID,
 };

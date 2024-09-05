@@ -52,6 +52,26 @@ const updateUserRole = catchasync(async (req: Request, res: Response) => {
   });
 });
 
+const updateUserInfo = catchasync(async (req: Request, res: Response) => {
+  const incomingData: any = req.body;
+  let id;
+  let updatedData: any = {};
+  for (let key in incomingData) {
+    if (key === "userID") {
+      id = incomingData[key];
+    } else {
+      updatedData[key] = incomingData[key];
+    }
+  }
+  const result = await userServices.updateUserInfo(updatedData, id);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "User updated successfully",
+    data: result,
+  });
+});
+
 const getAllUsers = catchasync(async (req: Request, res: Response) => {
   const allUserData = await userServices.getAllUsers();
   sendResponse(res, {
@@ -62,9 +82,22 @@ const getAllUsers = catchasync(async (req: Request, res: Response) => {
   });
 });
 
+const getUserByID = catchasync(async (req: Request, res: Response) => {
+  const { userID } = req.query;
+  const user = await userServices.getUserByID(userID as string);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Users fetched successfully",
+    data: user,
+  });
+});
+
 export const UserControllers = {
   createNewUser,
   loginUser,
   updateUserRole,
   getAllUsers,
+  getUserByID,
+  updateUserInfo,
 };

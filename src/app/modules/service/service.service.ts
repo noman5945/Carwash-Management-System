@@ -15,6 +15,7 @@ const createNewServiceIntoDB = async (serviceData: TService) => {
 const getAllServicesfromDB = async (params: any, limit: number) => {
   let query: any = {};
   let sort: any = {};
+  let page = 1;
   if (params.name) {
     query.name = { $regex: params.name, $options: "i" };
   }
@@ -31,8 +32,12 @@ const getAllServicesfromDB = async (params: any, limit: number) => {
   if (params.isDeleted) {
     query.isDeleted = params.isDeleted;
   }
-
-  const result = await Service.find(query).sort(sort).limit(limit);
+  if (params.page) {
+    page = params.page;
+  }
+  let skip = (Number(page) - 1) * limit;
+  console.log(skip);
+  const result = await Service.find(query).skip(skip).sort(sort).limit(limit);
   return result;
 };
 

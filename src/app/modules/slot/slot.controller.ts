@@ -16,6 +16,28 @@ const getAllAvailableSlots = catchasync(async (req: Request, res: Response) => {
   });
 });
 
+const getSingleSlotByID = catchasync(async (req: Request, res: Response) => {
+  const result = await SlotServices.getSingleSlotByID(req.query);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: `Slot retrieved successfully`,
+    data: result,
+  });
+});
+
+const updateSlotByID = catchasync(async (req: Request, res: Response) => {
+  const result = await SlotServices.updateSlotByID(req.body);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: `Slot updated successfully`,
+    data: result,
+  });
+});
+
 export const SlotControllers = {
   getAllAvailableSlots,
+  getSingleSlotByID,
+  updateSlotByID,
 };
