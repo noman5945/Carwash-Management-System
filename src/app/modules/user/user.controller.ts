@@ -4,6 +4,8 @@ import { userServices } from "./user.service";
 import sendResponse from "../../utils/sendResponse";
 import httpStatus from "http-status";
 import { TUserTokenData } from "./user.interface";
+import bcrypt from "bcrypt";
+import config from "../../config";
 
 const createNewUser = catchasync(async (req: Request, res: Response) => {
   const result = await userServices.createNewUserIntoDB(req.body);
@@ -59,6 +61,12 @@ const updateUserInfo = catchasync(async (req: Request, res: Response) => {
   for (let key in incomingData) {
     if (key === "userID") {
       id = incomingData[key];
+    }
+    if (key === "password") {
+      updatedData.password = await bcrypt.hash(
+        incomingData[key],
+        Number(config.bcrypt_salt_rounds)
+      );
     } else {
       updatedData[key] = incomingData[key];
     }
