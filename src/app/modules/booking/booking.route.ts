@@ -13,4 +13,6 @@ bookingRoutes.get(
   BookingControllers.getAllBookings
 );
 
+bookingRoutes.post("/stripe-pay", BookingControllers.stripePayment);
+
 export default bookingRoutes;

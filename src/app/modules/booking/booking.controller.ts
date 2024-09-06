@@ -44,8 +44,21 @@ const getUserBookings = catchasync(async (req: Request, res: Response) => {
   });
 });
 
+const stripePayment = catchasync(async (req: Request, res: Response) => {
+  const { item, bookingData, success_page, failed_page } = req.body;
+
+  const result = await BookingService.stripePay(
+    item,
+    success_page as string,
+    failed_page as string
+  );
+  console.log(result);
+  res.status(200).json({ id: result });
+});
+
 export const BookingControllers = {
   bookService,
   getAllBookings,
   getUserBookings,
+  stripePayment,
 };
