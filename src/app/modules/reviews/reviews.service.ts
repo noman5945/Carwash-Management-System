@@ -17,13 +17,16 @@ const getAllReviews = async (rawQuery: any) => {
     if (key === "limit") {
       limit = rawQuery[key];
     }
+    if (key === "page") {
+      page = rawQuery[key];
+    }
   }
-  let skip = (page - 1) * limit;
+  let skip = (Number(page) - 1) * limit;
   const result = await Review.find({})
     .skip(skip)
-    .sort({ rate: -1 })
+    .sort({ rating: -1 })
     .limit(limit)
-    .populate("user", "-password");
+    .populate("userID", "-password");
 
   return result;
 };
