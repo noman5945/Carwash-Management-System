@@ -20,6 +20,10 @@ const ServiceSchema = new Schema<TService>(
       required: [true, "Duration of the service is missing"],
     },
     isDeleted: { type: Boolean, default: false },
+    img: {
+      type: String,
+      required: [true, "Image link of the service is required."],
+    },
   },
   {
     timestamps: true,
